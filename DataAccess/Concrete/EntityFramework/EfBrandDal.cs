@@ -9,19 +9,19 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfBrandDal : IBrandDal
     {
-        public void Add(Car entity)
+        public void Add(Brand entity)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
-                context.SaveChanges(); 
+                context.SaveChanges();
             }
         }
 
-        public void Delete(Car entity)
+        public void Delete(Brand entity)
         {
             using (ReCapContext context = new ReCapContext())
             {
@@ -31,25 +31,25 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public Car Get(Expression<Func<Car, bool>> filter)
+        public Brand Get(Expression<Func<Brand, bool>> filter)
         {
             using (ReCapContext context = new ReCapContext())
             {
-                return context.Set<Car>().SingleOrDefault(filter);
+                return context.Set<Brand>().SingleOrDefault(filter);
             }
         }
-        
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+
+        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 return filter == null
-                    ? context.Set<Car>().ToList()
-                    : context.Set<Car>().Where(filter).ToList();
+                    ? context.Set<Brand>().ToList()
+                    : context.Set<Brand>().Where(filter).ToList();
             }
         }
 
-        public void Update(Car entity)
+        public void Update(Brand entity)
         {
             using (ReCapContext context = new ReCapContext())
             {
