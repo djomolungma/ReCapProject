@@ -12,6 +12,8 @@ namespace ConsoleUI
         {
             //CarManager carManager = new CarManager(new InMemoryCarDal());
             CarManager carManager = new CarManager(new EfCarDal());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            ColorManager colorManager = new ColorManager(new EfColorDal());
 
             //carManager.Add(new Car
             //{ BrandId = 3, ColorId = 1, DailyPrice = 250000, ModelYear = 2021, Description = "BMW X5" });
@@ -55,6 +57,30 @@ namespace ConsoleUI
             }
             Console.WriteLine($"----Daili Price Bigger Then 0------------------------");
 
+            Console.WriteLine($"----CRUD operations------------------------");
+            Console.WriteLine($"----Car operations------------------------");
+            carManager.Add(new Car
+            { BrandId = 3, ColorId = 1, DailyPrice = 112000, ModelYear = 2010, Description = "BMW X1" });
+
+            Console.WriteLine($"----End Car operations------------------------");
+            Console.WriteLine($"----Brand operations------------------------");
+            brandManager.Add(new Brand { Code = "Fiat",Name = "Fiat" });
+            brandManager.Add(new Brand { Code = "Toyota", Name = "Toyota" });
+            brandManager.Add(new Brand { Code = "BMW", Name = "BMW" });
+            Console.WriteLine($"----End Brand operations------------------------");
+            Console.WriteLine($"----Color operations------------------------");
+            colorManager.Add(new Color() { Code = "Red", Name = "Red" });
+            colorManager.Add(new Color() { Code = "White", Name = "White" });
+            colorManager.Add(new Color() { Code = "Black", Name = "Black" });
+            Console.WriteLine($"----End Color operations------------------------");
+            Console.WriteLine($"----END CRUD operations------------------------");
+
+            Console.WriteLine($"----Car details------------------------");
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine($"{car.CarId} | {car.CarName} | {car.BrandName} | {car.ColorName} | {car.DailyPrice}");
+            }
+            Console.WriteLine($"----End Car details------------------------");
         }
     }
 }
