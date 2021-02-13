@@ -6,6 +6,8 @@ namespace Business.Constants
 {
     public static class Messager
     {
+        public static string MaintenanceTime = "Bakım zamanı";
+
         public static string CarAdded = "Araba eklendi";//public değişkenler büyük harf ile başlar, privetlar küçük harf ile başlar
         public static string CarDeleted = "Araba silindi";
         public static string CarUpdated = "Araba güncellendi";
@@ -31,8 +33,22 @@ namespace Business.Constants
         public static string ModelDeleted = "Model silindi";
         public static string ModelUpdated = "Model güncellendi";
         public static string ModelsListed = "Modeller listelendi";
+        
+        public static string CustomerAdded = "Müşteri eklendi";
+        public static string CustomerDeleted = "Müşteri silindi";
+        public static string CustomerUpdate = "Müşteri güncellendi";
+        public static string CustomersListed = "Müşteriler listelendi";
 
-        public static string MaintenanceTime = "Bakım zamanı";
+        public static string RentalAdded = "Kiralama bilgisi eklendi";
+        public static string RentalDeleted = "Kiralama bilgisi silindi";
+        public static string RentalUpdate = "Kiralama bilgisi güncellendi";
+        public static string RentalsListed = "Kiralama bilgileri listelendi";
+        public static string RentalReturnDateInvalid = "Teslim tarihi geçersiz";
+
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserDeleted = "Kullanıcı silindi";
+        public static string UserUpdate = "Kullanıcı güncellendi";
+        public static string UsersListed = "Kullanıcılar listelendi";
         
     }
 }
