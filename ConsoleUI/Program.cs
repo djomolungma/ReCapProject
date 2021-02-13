@@ -28,30 +28,30 @@ namespace ConsoleUI
             //carManager.Add(new Car
             //{ BrandId = 1, ColorId = 3, DailyPrice = 0, ModelYear = 2021, Description = "" });
 
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine($"{car.ModelYear} - {car.Description}");
             }
 
-            Car singlecar = carManager.GetById(1);
+            Car singlecar = carManager.GetById(1).Data;
             Console.WriteLine($"{singlecar.ModelYear} - {singlecar.Description}");
 
             Console.WriteLine($"----Get Cars By Brand Id------------------------");
-            foreach (var car in carManager.GetCarsByBrandId(3))
+            foreach (var car in carManager.GetCarsByBrandId(3).Data)
             {
                 Console.WriteLine($"{car.ModelYear} - {car.Description}");
             }
             Console.WriteLine($"----Get Cars By Brand Id------------------------");
 
             Console.WriteLine($"----Get Cars By Color Id------------------------");
-            foreach (var car in carManager.GetCarsByColorId(1))
+            foreach (var car in carManager.GetCarsByColorId(1).Data)
             {
                 Console.WriteLine($"{car.ModelYear} - {car.Description}");
             }
             Console.WriteLine($"----Get Cars By Color Id------------------------");
 
             Console.WriteLine($"----Daili Price Bigger Then 0------------------------");
-            foreach (var car in carManager.GetByDailyPrice(1))
+            foreach (var car in carManager.GetByDailyPrice(1).Data)
             {
                 Console.WriteLine($"{car.ModelYear} - {car.Description}");
             }
@@ -76,7 +76,7 @@ namespace ConsoleUI
             Console.WriteLine($"----END CRUD operations------------------------");
 
             Console.WriteLine($"----Car details------------------------");
-            foreach (var car in carManager.GetCarDetails())
+            foreach (var car in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine($"{car.CarId} | {car.CarName} | {car.BrandName} | {car.ColorName} | {car.DailyPrice}");
             }
