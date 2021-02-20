@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConserns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DTOs.Entities;
@@ -17,15 +19,40 @@ namespace Business.Concrete
         {
             _carDal = carDal; 
         }
-
+        
         public IResult Add(Car car)
         {
-            if (car.Description.Length < 2 )                
-                return new ErrorResult(Messager.CarNameInvalid);
-            else if (car.DailyPrice <= 0)                
-                return new ErrorResult(Messager.CarDailyPriceInvalid);
-            else
-                _carDal.Add(car);
+            //business codes
+            //validations
+            //businness kodu ayrı validation kodu ayrı yapılmalı !!!
+
+
+            //1.kötü kod örneği
+            //if (car.DailyPrice <= 0)
+            //{
+            //    return new ErrorResult(Messages.CarDailyPriceInvalid);
+            //}
+            //if (car.Description.Length < 2)
+            //{
+            //    //Antipatern == kötü kullanım
+
+            //    //Magic strings
+            //    return new ErrorResult(Messages.CarNameInvalid);
+            //}
+
+            //2.biraz daha iyi kod örneği spagetti
+            //var context = new ValidationContext<Car>(car);
+            //CarValidator carValidator = new CarValidator();
+            //var result = carValidator.Validate(context);
+            //if (!result.IsValid)
+            //{
+            //    throw new ValidationException(result.Errors);
+            //}
+
+            //3.Refactor edilmiş daha iyi kod örneği
+            ValidationTool.Validate(new CarValidator(), car);
+            
+            _carDal.Add(car);
 
             return new SuccessResult(Messager.CarAdded);
         }
