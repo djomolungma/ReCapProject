@@ -24,24 +24,24 @@ namespace Business.Concrete
         public IResult Add(Model model)
         {            
             _modelDal.Add(model);
-            return new SuccessResult(Messager.ModelAdded);
+            return new SuccessResult(Messages.ModelAdded);
         }
 
         public IResult Delete(Model model)
         {
             var modelToDelete = _modelDal.Get(m => m.Id == model.Id);
             _modelDal.Delete(modelToDelete);
-            return new SuccessResult(Messager.ModelDeleted);
+            return new SuccessResult(Messages.ModelDeleted);
         }
 
         public IDataResult<List<Model>> GetAll()
         {            
-            return new SuccessDataResult<List<Model>>(_modelDal.GetAll(), Messager.ModelsListed);
+            return new SuccessDataResult<List<Model>>(_modelDal.GetAll(), Messages.ModelsListed);
         }
 
         public IDataResult<Model> GetById(int modelId)
         {            
-            return new SuccessDataResult<Model>(_modelDal.Get(m => m.Id == modelId), Messager.ModelsListed);
+            return new SuccessDataResult<Model>(_modelDal.Get(m => m.Id == modelId), Messages.ModelsListed);
         }
 
         [ValidationAspect(typeof(ModelValidator))]
@@ -49,7 +49,7 @@ namespace Business.Concrete
         {
             var modelToUpdate = _modelDal.Get(m => m.Id == model.Id);
             _modelDal.Update(modelToUpdate);
-            return new SuccessResult(Messager.ModelUpdated);
+            return new SuccessResult(Messages.ModelUpdated);
         }
     }
 }

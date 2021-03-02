@@ -23,14 +23,14 @@ namespace Business.Concrete
         public IResult Add(Customer customer)
         {
             _customerDal.Add(customer);
-            return new SuccessResult(Messager.CustomerAdded);
+            return new SuccessResult(Messages.CustomerAdded);
         }
 
         public IResult Delete(Customer customer)
         {
             var customerToDelete = _customerDal.Get(c => c.Id == customer.Id);
             _customerDal.Delete(customerToDelete);
-            return new SuccessResult(Messager.CustomerDeleted);
+            return new SuccessResult(Messages.CustomerDeleted);
         }
 
         public IDataResult<List<Customer>> GetAll()
@@ -48,7 +48,7 @@ namespace Business.Concrete
         {
             var customerToUpdate = _customerDal.Get(c => c.Id == customer.Id);
             _customerDal.Delete(customerToUpdate);
-            return new SuccessResult(Messager.CustomerUpdate);
+            return new SuccessResult(Messages.CustomerUpdate);
         }
     }
 }

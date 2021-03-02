@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Business.Constants
 {
-    public static class Messager
+    public static class Messages
     {
         public static string MaintenanceTime = "Bakım zamanı";
 
@@ -52,8 +52,16 @@ namespace Business.Constants
 
         public static string CarImageAdded = "Araba resmi eklendi";
         public static string CarImageUpdated = "Araba resmi güncellendi";
-        public  static string CarImageDeleted = "Araba resmi silindi";
+        public static string CarImageDeleted = "Araba resmi silindi";
         public static string CarImagesByCarIdListed = "Seçilen arabaya ait resimler listelendi";
         public static string CarImageLimitExeeded = "Araba başına düşen resim sayısı aşıldı";
+
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string UserRegistered = "Kullanıcı kayıt oldu";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Başatılı giriş";
+        public static string UserAlreadyExists = "Kullanıcı zaten mevcut";
+        public static string AccessTokenCreated = "Erişim tokenı oluşturuldu";
     }
 }

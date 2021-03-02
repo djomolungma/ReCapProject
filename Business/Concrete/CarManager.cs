@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -20,7 +21,8 @@ namespace Business.Concrete
         {
             _carDal = carDal; 
         }
-        
+
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -56,21 +58,21 @@ namespace Business.Concrete
             
             _carDal.Add(car);
 
-            return new SuccessResult(Messager.CarAdded);
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        
 
+        [SecuredOperation("car.delete,admin")]
         public IResult Delete(Car car)
         {
             var carToDelete = _carDal.Get(c => c.Id == car.Id);
             _carDal.Delete(carToDelete);
-            return new SuccessResult(Messager.CarDeleted);
+            return new SuccessResult(Messages.CarDeleted);
         }
-
+        
         public IDataResult<List<Car>> GetAll()
         {            
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messager.CarsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetByDailyPrice(double min, double max = -1)
@@ -81,7 +83,7 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<Car>>(max > -1
                 ? _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max)
-                : _carDal.GetAll(c => c.DailyPrice >= min), Messager.CarsByDailyPriceListed);
+                : _carDal.GetAll(c => c.DailyPrice >= min), Messages.CarsByDailyPriceListed);
         }        
 
         //public List<Car> GetAllByBrandId(int brandId)
@@ -91,29 +93,30 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == carId), Messager.CarsListed);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == carId), Messages.CarsListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),Messager.CarsWithDetailsListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),Messages.CarsWithDetailsListed);
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId), Messager.CarsByBrandIdListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId), Messages.CarsByBrandIdListed);
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messager.CarsByColorIdListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.CarsByColorIdListed);
         }
 
+        [SecuredOperation("car.update,admin")]
         public IResult Update(Car car)
         {
             var carToUpdate = _carDal.Get(c => c.Id == car.Id);
             _carDal.Update(carToUpdate);
-            return new SuccessDataResult<List<Car>>(Messager.CarUpdated);
+            return new SuccessDataResult<List<Car>>(Messages.CarUpdated);
         }
     }
 }

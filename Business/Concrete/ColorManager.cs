@@ -24,25 +24,25 @@ namespace Business.Concrete
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
-            return new SuccessResult(Messager.ColorAdded);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
         public IResult Delete(Color color)
         {
             var colorToDelete = _colorDal.Get(c=>c.Id == color.Id);
             _colorDal.Delete(colorToDelete);
-            return new SuccessResult(Messager.ColorDeleted);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
         {            
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messager.BrandsListed);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.BrandsListed);
 
         }
 
         public IDataResult<Color> GetById(int colorId)
         {            
-            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId), Messager.ColorsListed);
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId), Messages.ColorsListed);
         }
 
         [ValidationAspect(typeof(ColorValidator))]
@@ -50,7 +50,7 @@ namespace Business.Concrete
         {
             var colorToUpdate = _colorDal.Get(c => c.Id == color.Id);
             _colorDal.Update(colorToUpdate);
-            return new SuccessResult(Messager.ColorUpdated);
+            return new SuccessResult(Messages.ColorUpdated);
         }
     }
 }

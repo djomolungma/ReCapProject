@@ -38,7 +38,7 @@ namespace Business.Concrete
             carImage.Date = DateTime.Now;
             
             _carImageDal.Add(carImage);
-            return new SuccessResult(Messager.CarImageAdded);
+            return new SuccessResult(Messages.CarImageAdded);
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
@@ -53,7 +53,7 @@ namespace Business.Concrete
             var carImageToDelete = _carImageDal.Get(c => c.Id == carImage.Id);
             _carImageDal.Delete(carImageToDelete);
 
-            return new SuccessResult(Messager.CarImageDeleted);
+            return new SuccessResult(Messages.CarImageDeleted);
         }
 
         public IDataResult<List<CarImage>> GetCarImagesByCarId(int carId)
@@ -70,7 +70,7 @@ namespace Business.Concrete
             carImageToUpdate.Date = DateTime.Now;
             _carImageDal.Update(carImageToUpdate);
 
-            return new SuccessResult(Messager.CarImageUpdated);
+            return new SuccessResult(Messages.CarImageUpdated);
         }
 
         public IDataResult<CarImage> Get(int id)
@@ -83,7 +83,7 @@ namespace Business.Concrete
             var carImageCount = _carImageDal.GetAll(c => c.CarId == carId).Count; 
             if (carImageCount >= 5)
             {
-                return new ErrorResult(Messager.CarImageLimitExeeded);
+                return new ErrorResult(Messages.CarImageLimitExeeded);
             }
             return new SuccessResult();
         }

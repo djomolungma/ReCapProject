@@ -24,24 +24,24 @@ namespace Business.Concrete
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
-            return new SuccessResult(Messager.BrandAdded);
+            return new SuccessResult(Messages.BrandAdded);
         }
 
         public IResult Delete(Brand brand)
         {
             var brandToDelete = _brandDal.Get(b => b.Id == brand.Id);
             _brandDal.Delete(brandToDelete);
-            return new SuccessResult(Messager.BrandDeleted);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
         public IDataResult<List<Brand>> GetAll()
         {            
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messager.BrandsListed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandsListed);
         }
 
         public IDataResult<Brand> GetById(int brandId)
         {            
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == brandId), Messager.BrandsListed);
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == brandId), Messages.BrandsListed);
         }
 
         [ValidationAspect(typeof(BrandValidator))]
@@ -49,7 +49,7 @@ namespace Business.Concrete
         {
             var brandToUpdate = _brandDal.Get(b => b.Id == brand.Id);
             _brandDal.Update(brandToUpdate);
-            return new SuccessResult(Messager.BrandUpdated);
+            return new SuccessResult(Messages.BrandUpdated);
         }
     }
 }

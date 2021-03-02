@@ -1,0 +1,2 @@
+https://docs.microsoft.com/tr-tr/aspnet/core/mvc/advanced/custom-model-binding?view=aspnetcore-5.0
+https://www.c-sharpcorner.com/UploadFile/mahesh/create-a-file-using-fileinfo-in-C-Sharp/

@@ -21,11 +21,11 @@ namespace Business.Concrete
             if (IsCarReturned(rental.CarId))
             {
                 _rentalDal.Add(rental);
-                return new SuccessResult(Messager.RentalAdded);
+                return new SuccessResult(Messages.RentalAdded);
             }                
             else
             {
-                return new ErrorResult(Messager.RentalReturnDateInvalid);
+                return new ErrorResult(Messages.RentalReturnDateInvalid);
             }                        
         }
 
@@ -33,7 +33,7 @@ namespace Business.Concrete
         {
             var rentalToDelete = _rentalDal.Get(r => r.Id == rental.Id);
             _rentalDal.Delete(rentalToDelete);
-            return new SuccessResult(Messager.RentalDeleted);
+            return new SuccessResult(Messages.RentalDeleted);
         }
 
         private bool IsCarReturned(int carId)
@@ -57,7 +57,7 @@ namespace Business.Concrete
         {
             var rentalToUpdate = _rentalDal.Get(c => c.Id == rental.Id);
             _rentalDal.Delete(rentalToUpdate);
-            return new SuccessResult(Messager.RentalUpdate);
+            return new SuccessResult(Messages.RentalUpdate);
         }
     }
 }
