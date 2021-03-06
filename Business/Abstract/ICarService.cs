@@ -18,5 +18,6 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetCarsByColorId(int colorId);
         IDataResult<List<Car>> GetByDailyPrice(double min, double max);
         IDataResult<List<CarDetailDto>> GetCarDetails();
+        IResult TransactionalOperation(Car car);
     }
 }

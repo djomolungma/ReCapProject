@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encription;
 using Core.Utilities.Security.Jwt;
@@ -61,7 +63,11 @@ namespace WebApi
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
+
+            //ServiceTool.Create(services); //bu satýrýn yerine alt satýrda daha fonksiyonel bir geliþtirme yapýldý 
+            services.AddDependencyResolvers(new ICoreModel[] { 
+                new CoreModule()
+            });
 
             //Servisler Autofac kullanýlarak yeniden implemente edildi
             //services.AddSingleton<IBrandService, BrandManager>();
