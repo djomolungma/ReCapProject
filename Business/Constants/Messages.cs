@@ -44,6 +44,7 @@ namespace Business.Constants
         public static string RentalUpdate = "Kiralama bilgisi güncellendi";
         public static string RentalsListed = "Kiralama bilgileri listelendi";
         public static string RentalReturnDateInvalid = "Teslim tarihi geçersiz";
+        public static string RentalWithDetailsListed = "Kiralama detaylı olaral listelendi";
 
         public static string UserAdded = "Kullanıcı eklendi";
         public static string UserDeleted = "Kullanıcı silindi";
@@ -63,5 +64,6 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başatılı giriş";
         public static string UserAlreadyExists = "Kullanıcı zaten mevcut";
         public static string AccessTokenCreated = "Erişim tokenı oluşturuldu";
+        
     }
 }

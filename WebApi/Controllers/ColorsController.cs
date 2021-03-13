@@ -26,9 +26,9 @@ namespace WebApi.Controllers
             var result = _colorService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            else return BadRequest(result.Message);
+            else return BadRequest(result);
         }
 
         [HttpGet("GetById")]

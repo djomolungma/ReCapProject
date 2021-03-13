@@ -26,7 +26,7 @@ namespace WebApi.Controllers
             var result = _brandService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             else return BadRequest(result.Message);
         }
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
             {
                 return Ok(result.Data);
             }
-            else return BadRequest(result.Message);
+            else return BadRequest(result);
         }
 
         [HttpPost("Add")]

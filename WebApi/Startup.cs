@@ -37,14 +37,16 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddControllers();            
+            
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();            
 
             services.AddCors(OptionsBuilderConfigurationExtensions =>
             {
                 OptionsBuilderConfigurationExtensions.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:3000"));
             });
+
+            services.AddCors();//api ye dýþarýdan eriþim saðlanabilmesi için gerekli ; nereden eriþilebilecegini belirliyoruz Configure içerisine bak
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -100,7 +102,7 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());//Biz ektedik güvenlik için AllowAnyHeader() GET,POST,PUT
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200", "http://localhost:4201").AllowAnyHeader());//Biz ektedik güvenlik için AllowAnyHeader() GET,POST,PUT istekleri //adamý biliyorum ve güveniyorum
             app.UseHttpsRedirection();
 
             app.UseRouting();
